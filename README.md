@@ -1,0 +1,2 @@
+# PokEnti
+Practica Progra
