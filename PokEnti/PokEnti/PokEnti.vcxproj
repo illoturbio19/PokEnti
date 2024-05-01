@@ -127,7 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ash.cpp" />
+    <ClCompile Include="Mapa.cpp" />
     <ClCompile Include="PokEnti.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Ash.h" />
+    <ClInclude Include="Mapa.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

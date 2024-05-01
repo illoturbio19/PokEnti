@@ -2,17 +2,17 @@
 #include <iostream>
 #include <Windows.h>
 enum class Movement { UP, DOWN, LEFT, RIGHT, INVALID };
-class Ash
-{
-	std::string m_name;
-	char m_char;
+class Ash {
+private:
+    int x; // X position of Ash
+    int y; // Y position of Ash
 
-	int m_x, m_y;
 public:
-	int pokemons;
-
-	Ash();
-
-	~Ash();
+    Ash(int initialX, int initialY);
+    void moveUp();
+    void moveDown();
+    void moveLeft();
+    void moveRight();
+    int getX();
+    int getY();
 };
-

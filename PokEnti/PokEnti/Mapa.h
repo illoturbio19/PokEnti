@@ -1,29 +1,23 @@
 #pragma once
 #include "Ash.h"
-
+#include <iostream>
 
 const int NUM_ROWS = 4;
 const int NUM_COLUMNS = 4;
 
-class Mapa
-{
-	Ash ash;
-	bool ash;
-	bool pokemons;
-	bool obstacles;
 
-	void InitializeBoard(Ash& ash);
-	void MoveAsh(Ash& ash, Movement move);
-	void PrintBoard(const Ash& ash);
-	void SetPos(Ash& ash, Movement& move);
-	bool ExistCoin(Ash ash);
-	bool CheckMovement(Ash ash, Movement move);
-	bool SetMovement(char movement, Movement& move);
-	bool GameOver();
+class Map {
+private:
+	static const int WIDTH = 10; // Width of the map
+	static const int HEIGHT = 10; // Height of the map
+	char grid[WIDTH][HEIGHT]; // Grid representing the map
 
-
-	//pokemons, obstacles, etc:
+public:
+	Map();
+	void drawMap();
+	void updateMap(int ashX, int ashY);
 };
+
 
 
 
@@ -71,7 +65,7 @@ class Mapa
 //set movement
 /*bool SetMovement(char movement, Movement& move)
 {
-	if (movement == 'w' || movement == 'W' || movement == UP_ARROW) { move = Movement::UP; }
+	if (movement == 'w' || movement == 'W' || movement == UP_ARROW) { movement == UP; }
 	else if (movement == 's' || movement == 'S' || movement == DOWN_ARROW) { move = Movement::DOWN; }
 	else if (movement == 'a' || movement == 'A' || movement == LEFT_ARROW) { move = Movement::LEFT; }
 	else if (movement == 'd' || movement == 'D' || movement == RIGHT_ARROW) { move = Movement::RIGHT; }
