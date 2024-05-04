@@ -1,18 +1,18 @@
 #pragma once
-#include <iostream>
-#include <Windows.h>
+#include "Pokemons.h"
 enum class Movement { UP, DOWN, LEFT, RIGHT, INVALID };
 class Ash {
-private:
-    int x; // X position of Ash
-    int y; // Y position of Ash
+
+    Position2D m_pos;
+
+    char direction;
+    int num_pokemons_captured;
+
 
 public:
-    Ash(int initialX, int initialY);
-    void moveUp();
-    void moveDown();
-    void moveLeft();
-    void moveRight();
-    int getX();
-    int getY();
+    Position2D GetPos() const;
+    void CapturedPokemons(Ash& player);
+    void SetPos(const Position2D pos);
+    char GetDirection() const;
+    void SetDirection(char newDirection);
 };

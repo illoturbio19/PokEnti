@@ -1,28 +1,29 @@
 #include "Ash.h"
 
 
-Ash::Ash(int initialX, int initialY) : x(initialX), y(initialY) {}
 
-void Ash::moveUp() {
-    y--;
+
+void Ash::CapturedPokemons(Ash& player)
+{
+	player.num_pokemons_captured++;
 }
 
-void Ash::moveDown() {
-    y++;
+Position2D Ash::GetPos() const
+{
+	return m_pos;
 }
 
-void Ash::moveLeft() {
-    x--;
+void Ash::SetPos(const Position2D pos)
+{
+	m_pos = pos;
 }
 
-void Ash::moveRight() {
-    x++;
+char Ash::GetDirection() const
+{
+	return direction;
 }
 
-int Ash::getX() {
-    return x;
-}
-
-int Ash::getY() {
-    return y;
+void Ash::SetDirection(char newDirection)
+{
+	direction = newDirection;
 }

@@ -1,43 +1,74 @@
-#include <iostream>
-#include "Ash.h"
 #include "Mapa.h"
+#include <iostream>
+#include <conio.h>
+#include <cstdlib>
+#include <ctime>
+#include <Windows.h>
+#include <fstream>
 
 int main() {
-    Map map;
-    Ash ash(5, 5); // Initial position of Ash
+    // Seed for random number generation
+    srand(time(NULL));
+    const int FPS = 60;
 
-    // Update the map with the initial position of Ash
-    map.updateMap(ash.getX(), ash.getY());
-    map.drawMap();
+    // Create an instance of the player and the map
+    Ash player;
+    Map gameMap;
 
-    char movement;
-    while (true) {
-        std::cout << "Enter movement (W/A/S/D): ";
-        std::cin >> movement;
+    // Initialize the game map with the player
+    gameMap.InitializeMap(player);
 
-        // Move Ash according to user input
-        switch (movement) {
-        case 'W':
-            ash.moveUp();
-            break;
-        case 'A':
-            ash.moveLeft();
-            break;
-        case 'S':
-            ash.moveDown();
-            break;
-        case 'D':
-            ash.moveRight();
-            break;
-        default:
-            std::cout << "Invalid input!" << std::endl;
-            continue; // Restart the loop for valid input
+    // Game loop control
+    bool gameRunning = true;
+
+    // Game loop
+    while (gameRunning && !gameMap.GameOver()) {
+        system("cls"); // Clear screen
+
+        // Print the game board
+        gameMap.PrintBoard(player);
+
+        // Get movement input
+        Movement move = Movement::INVALID;
+
+        // Set movement direction
+        gameMap.SetMovement(player, move);
+
+        // Check if movement is valid
+        if (gameMap.CheckMovement(player, move)) {
+            // Move the player if the input direction matches the direction Ash is facing
+            if (move == Movement::UP && player.GetDirection() == '^') {
+                gameMap.MovementAsh(player, move);
+            }
+            else if (move == Movement::DOWN && player.GetDirection() == 'v') {
+                gameMap.MovementAsh(player, move);
+            }
+            else if (move == Movement::LEFT && player.GetDirection() == '<') {
+                gameMap.MovementAsh(player, move);
+            }
+            else if (move == Movement::RIGHT && player.GetDirection() == '>') {
+                gameMap.MovementAsh(player, move);
+            }
+
         }
 
-        // Clear the previous position of Ash on the map
-        map.updateMap(ash.getX(), ash.getY());
-        map.drawMap();
+       
+        if (GetAsyncKeyState(VK_SPACE)) {
+            gameMap.CapturePokemon(player);
+        }
+
+        // Wait for a key release to prevent rapid movement
+        while (_kbhit()) {
+            _getch(); // Clear the keyboard buffer
+        }
+
+        // Sleep for a short duration to prevent unnecessary CPU usage
+        Sleep(10000 / FPS);
     }
+
+    // Game over
+    system("cls");
+    std::cout << "Game Over!" << std::endl;
 
     return 0;
 }
