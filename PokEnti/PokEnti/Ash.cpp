@@ -27,3 +27,8 @@ void Ash::SetDirection(char newDirection)
 {
 	direction = newDirection;
 }
+
+
+void Ash::setPokemonsCaptured(int amount) {
+	num_pokemons_captured = amount;
+}

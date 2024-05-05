@@ -7,7 +7,7 @@
 #include <fstream>
 
 int main() {
-    // Seed for random number generation
+   // Seed for random number generation
     srand(time(NULL));
     const int FPS = 60;
 
@@ -71,4 +71,5 @@ int main() {
     std::cout << "Game Over!" << std::endl;
 
     return 0;
+ 
 }

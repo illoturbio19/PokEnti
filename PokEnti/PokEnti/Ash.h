@@ -11,6 +11,7 @@ class Ash {
 
 public:
     Position2D GetPos() const;
+    void setPokemonsCaptured(int amount);
     void CapturedPokemons(Ash& player);
     void SetPos(const Position2D pos);
     char GetDirection() const;
