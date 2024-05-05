@@ -122,7 +122,7 @@ void Map::SetPos(Ash& player, Movement move)
     player.SetPos(currentPos);
 }
 
-
+//es lo mateix q ficar max i min amb la llibreria algorithm
 int MAX(int a, int b) {
     return (a > b) ? a : b;
 }
@@ -134,13 +134,38 @@ int MIN(int a, int b) {
 
 
 void Map::PrintBoard(Ash& player) {
-    // Determine the range of rows and columns to print
-    int startRow = (player.GetPos().x - (VIEW_HEIGHT / 2) > 0) ? MAX(0, player.GetPos().x - (VIEW_HEIGHT / 2)) : 0;
-    int endRow = (player.GetPos().x + (VIEW_HEIGHT / 2) < HEIGHT) ? MIN(HEIGHT - 1, player.GetPos().x + (VIEW_HEIGHT / 2)) : (HEIGHT - 1);
-    int startCol = (player.GetPos().y - (VIEW_WIDTH / 2) > 0) ? MAX(0, player.GetPos().y - (VIEW_WIDTH / 2)) : 0;
-    int endCol = (player.GetPos().y + (VIEW_WIDTH / 2) < WIDTH) ? MIN(WIDTH - 1, player.GetPos().y + (VIEW_WIDTH / 2)) : (WIDTH - 1);
+    
+    int startRow, endRow, startCol, endCol;
 
-    // Print the portion of the map within the range
+    if (player.GetPos().x - (VIEW_HEIGHT / 2) > 0) {
+        startRow = player.GetPos().x - (VIEW_HEIGHT / 2);
+    }
+    else {
+        startRow = 0;
+    }
+
+    if (player.GetPos().x + (VIEW_HEIGHT / 2) < HEIGHT) {
+        endRow = player.GetPos().x + (VIEW_HEIGHT / 2);
+    }
+    else {
+        endRow = HEIGHT - 1;
+    }
+
+    if (player.GetPos().y - (VIEW_WIDTH / 2) > 0) {
+        startCol = player.GetPos().y - (VIEW_WIDTH / 2);
+    }
+    else {
+        startCol = 0;
+    }
+
+    if (player.GetPos().y + (VIEW_WIDTH / 2) < WIDTH) {
+        endCol = player.GetPos().y + (VIEW_WIDTH / 2);
+    }
+    else {
+        endCol = WIDTH - 1;
+    }
+
+    
     for (int i = startRow; i <= endRow; ++i) {
         for (int j = startCol; j <= endCol; ++j) {
             switch (mapa[i][j].typeCell) {
